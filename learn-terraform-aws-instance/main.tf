@@ -6,7 +6,11 @@ terraform {
     }
   }
 
-  backend "s3" {}
+  backend "s3" {
+    bucket   = "ttomczyk-s3-bucket"
+    key      = "terraform/terraform.tfstate"
+    region   = "eu-west-1"
+  }
 
   required_version = ">= 1.2.0"
 }
@@ -72,13 +76,4 @@ resource "aws_instance" "app_server" {
     Name  = var.instance_name
     Owner = "ttomczyk"
   }
-}
-
-module "infrastructure" {
-  source = "./modules/v1.0.0"
-}
-
-module "backend" {
-  source     = "./modules/backend"
-  s3_tfstate = var.s3_tfstate
 }

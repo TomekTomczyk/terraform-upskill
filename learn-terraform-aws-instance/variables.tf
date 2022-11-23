@@ -4,8 +4,8 @@ variable "instance_name" {
   default     = "ExampleAppServerInstance"
 }
 
-variable "s3_tfstate" {
-  type = object({
-    bucket = string
-  })
+variable "providerprofile_name" {
+  description = "Profile name"
+  type        = string
+  default     = "eu-west-1"
 }
